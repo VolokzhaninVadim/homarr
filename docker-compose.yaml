@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config_homar/configs:/app/data/configs
+      - ./config_homar/icons:/app/public/icons
+      - ./config_homar/data:/data
+    # ports:
+    #   - '7575:7575'
+    networks:
+      - default
+  dash:
+    container_name: dashdot
+    image: mauricenino/dashdot:latest
+    restart: unless-stopped
+    privileged: true
+    # ports:
+    #   - '3001:3001'
+    volumes:
+      - /:/mnt/host:ro
+    networks:
+      - default
+
+networks:
+  default:
+    external: true
+    name: volokzhanin
