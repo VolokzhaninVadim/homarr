@@ -21,6 +21,9 @@ services:
     privileged: true
     # ports:
     #   - '3001:3001'
+    environment:
+      - DASHDOT_USE_IMPERIAL='true'
+      - DASHDOT_ENABLE_CPU_TEMPS='true'
     volumes:
       - /:/mnt/host:ro
     networks:
